@@ -119,13 +119,11 @@ function buildScene() {
     var height = 6
     var pos = { x: -15, y: height / 2, z: 15 };
 
-    // threejs
     var cylinder = new THREE.Mesh(new THREE.CylinderBufferGeometry(radius, radius, height, 32), new THREE.MeshPhongMaterial({ color: 0x90ee90 }))
     cylinder.position.set(pos.x, pos.y, pos.z)
     cylinder.castShadow = true
     cylinder.receiveShadow = true
     scene.add(cylinder)
-
     cylinder.userData.draggable = true
     cylinder.userData.name = 'CYLINDER'
     cylinder.name = 'CYLINDER'

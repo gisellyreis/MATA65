@@ -82,12 +82,15 @@ function buildScene() {
         clickMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     
         var found = intersect(clickMouse);
-        if (found[0] == 'undefined') console.log();
+        if (found.length == 0) {
+            $(".card").empty();
+            $(".popup").hide();
+        }
         else {
-            console.log(found[0].object);
+            //console.log(found[0].object);
             obj = found[0].object;
-            $(".text").empty();
-            $(".popup").append("<div class='text'><p> This is a "+ obj.name + "</p></div>");
+            $(".card").empty();
+            $(".popup").append("<div class='card' style='width: 18rem;'><div class='card-body'><h5 class='card-title'>"+ obj.name +"</h5><h6 class='card-subtitle mb-2 text-muted'></h6><p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div></div>");
             $(".popup").show();
         }
         
