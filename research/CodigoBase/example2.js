@@ -82,19 +82,34 @@ function buildScene() {
         clickMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     
         var found = intersect(clickMouse);
+        var input = null;
         if (found.length == 0) {
-            $(".card").empty();
-            $(".popup").hide();
+            
         }
         else {
             //console.log(found[0].object);
             obj = found[0].object;
             $(".card").empty();
-            $(".popup").append("<div class='card' style='width: 18rem;'><div class='card-body'><h5 class='card-title'>"+ obj.name +"</h5><h6 class='card-subtitle mb-2 text-muted'></h6><p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div></div>");
+            $(".popup").append("<div class='card' style='width: 18rem;'><div class='card-body'><h5 class='card-title'>"+ obj.name +"</h5><h6 class='card-subtitle mb-2 text-muted'></h6><p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p><input id='input' /></div></div>");
             $(".popup").show();
+            input = document.getElementById('input');
+            input.addEventListener('change', e => {
+                console.log(input.value); 
+                setTimeout(function() {
+                    $(".card").empty();
+                    $(".popup").hide();
+                }, 1000)
+            })
+
+            document.getElementById('close').addEventListener('click', e => {
+                $(".card").empty();
+                $(".popup").hide();
+            })
         }
         
     })
+
+
 
 
    /*  window.addEventListener('mousemove', event => { 

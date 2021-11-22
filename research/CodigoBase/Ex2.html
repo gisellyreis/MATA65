@@ -6,7 +6,8 @@
 	
 	<script type="module" src="example2.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	
+	<script src="../resources/libs/three.min.js"></script>
+
 	<style>
 		.popup {
 			max-width: 75%;
@@ -21,13 +22,25 @@
 			z-index: 1109;
 		}
 
+		button {
+			display: inline;
+			float: right;
+
+
+			border: none;
+			background: transparent;
+			font-weight: 600;
+		}
+
 		input {
 			border-radius: 5px;
 		}
 	</style>
 
 	<body>
-		<div hidden="true" class="popup"> <div class="card">
+		<div hidden="true" class="popup"> 
+			<button id="close">x</button id="close"> 
+		<div class="card">
 		</div> </div>
 	</body>
 </html>
