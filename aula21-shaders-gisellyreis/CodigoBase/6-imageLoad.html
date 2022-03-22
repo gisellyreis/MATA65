@@ -1,0 +1,44 @@
+<html>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<head>
+		<title>MATA65 - Computação Gráfica</title>
+	</head>
+
+	<script id="imgVertShader" type="x-shader/x-vertex">	
+ 		
+		varying vec2 vUv;	
+
+		void main(void) {
+
+			vUv = uv;
+
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		}
+	</script>
+	
+	<script id="imgFragShader" type="x-shader/x-fragment">
+		precision mediump float;
+		
+		uniform sampler2D 	uSampler;
+
+		varying vec2 		vUv;
+
+		void main(void) {	
+
+			vec4 c = texture2D(uSampler, vUv);
+
+			gl_FragColor = c;
+			}
+	</script>
+	
+	<script type="module" src="6-imageLoad.js"></script>
+	
+	<body>
+		<h1>MATA65 - Computação Gráfica</h1>
+		<h2>Carregando uma imagem para processamento no <i>Three.JS</i></h2><br />
+		<br/>
+		<div id="output"> </div>
+		<div id="WebGL-output" ></div>
+		<br/>
+	</body>
+</html>

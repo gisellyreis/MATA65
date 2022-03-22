@@ -1,0 +1,54 @@
+<html>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<head>
+		<title>MATA65 - Computação Gráfica</title>
+	</head>
+
+	<script id="vertShader" type="x-shader/x-vertex">
+
+		uniform float uTime;	
+		uniform float uAmp;
+
+		varying vec4 vColor;
+
+		void main(void) {
+
+			vec3 vPos 	= position; 
+			vPos.z 		= uAmp * (sin(0.07*vPos.x + uTime) + sin(0.07*vPos.y + uTime));
+
+			if (vPos.z >= 0.0)
+				vColor = vec4(	clamp(1.0 - vPos.z, 0.0, 1.0), 
+								clamp(1.0 - vPos.z, 0.0, 1.0), 
+								1.0, 1.0);
+			else
+				vColor = vec4(	1.0, 
+								clamp(1.0 + vPos.z, 0.0, 1.0), 
+								clamp(1.0 + vPos.z, 0.0, 1.0), 
+								1.0);
+
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(vPos, 1.0);
+		}
+	</script>
+	
+	<script id="fragShader" type="x-shader/x-fragment">
+		precision mediump float;
+
+		varying vec4 vColor;
+		
+		void main(void) {	
+			gl_FragColor = vColor;
+			}
+	</script>
+
+	<script type="module" src="5-varyingParameter.js"></script>
+	
+	
+	<body>
+		<h1>MATA65 - Computação Gráfica</h1>
+		<h2>Usando parâmetros <i>Varying</i> nos <i>Shaders</i> no <i>Three.JS</i></h2><br />
+		<br/>
+		<div id="output"> </div>
+		<div id="WebGL-output" ></div>
+		<br/>
+	</body>
+</html>

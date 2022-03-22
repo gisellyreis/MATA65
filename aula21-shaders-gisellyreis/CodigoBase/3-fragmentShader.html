@@ -1,0 +1,45 @@
+<html>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<head>
+		<title>MATA65 - Computação Gráfica</title>
+	</head>
+	   
+	<script id="vertexShader" type="x-shader/x-vertex">	
+
+		varying vec2 vXY; 	
+	
+		void main(void) {
+			vXY = position.xy;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		}
+	</script>
+	
+	<script id="fragShader" type="x-shader/x-fragment">
+		precision mediump float;
+		
+		uniform bool fixedColor;
+		varying vec2 vXY; 	
+			
+		void main(void) {	
+
+			vec4 color = vec4(0.3, 0.3, 0.3, 1.0);
+
+			if (!fixedColor) {
+				float dist = sqrt(vXY.x*vXY.x + vXY.y*vXY.y);
+				color = vec4(dist, 0.0, 1.0 - dist, 1.0);
+				}
+
+			gl_FragColor = color;
+		}
+	</script>
+	
+	<script type="module" src="3-fragmentShader.js"></script>
+		
+	<body>
+		<h1>MATA65 - Computação Gráfica</h1>
+		<h2><i>Fragment Shader</i> no <i>Three.JS</i></h2><br />
+		<br/>
+		<div id="WebGL-output" ></div>
+		<br/>
+	</body>
+</html>
